@@ -18,6 +18,11 @@ namespace VanirsWatch
 
         static void Main(string[] args)
         {
+
+            /** let's make a debug class first!
+              * implement that stuff later again ;)
+
+
             Process process = Process.GetProcessesByName("my")[0];
             Console.WriteLine(process.ProcessName);
             IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
@@ -73,6 +78,8 @@ namespace VanirsWatch
             //Job:		    009A511C   -> ID! not the jobname itself!
             ReadProcessMemory((int)processHandle, 0x009A511C, buffer, INTBUFFER_SIZE, ref bytesRead);
             Console.WriteLine("JobID: " + bufferToInt(buffer));
+
+            */
         }
 
         private static int bufferToInt(byte[] buffer)
