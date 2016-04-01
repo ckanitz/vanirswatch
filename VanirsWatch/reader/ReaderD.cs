@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace VanirsWatch.reader
 {
-    class ReaderD
+    public class ReaderD
     {
         //testing statics
         private const String map = "geffen.rsw   rsw";
@@ -28,13 +24,14 @@ namespace VanirsWatch.reader
         private int currHP = 1337;
         private int currSP = 666;
 
-        public String getMap()
+        public static String getMap()
         {
             //regex: [^\.]+
-            return Regex.Replace(map, "[^\\.] +", "");
+            //return Regex.Replace(map, "[^\\.]+", "");
+            return map;
         }
 
-        public String getName()
+        public static String getName()
         {
             return name;
         }
@@ -84,12 +81,12 @@ namespace VanirsWatch.reader
             return maxSP;
         }
         
-        public int getBaseLv()
+        public static int getBaseLv()
         {
             return baseLv;
         }
 
-        public int getJobLv()
+        public static int getJobLv()
         {
             return jobLv;
         }
@@ -99,7 +96,6 @@ namespace VanirsWatch.reader
             Random rnd = new Random();
 
             int rndNum = rnd.Next(0, 100);
-
             return currBaseEXP += rndNum;
         }
         
@@ -108,8 +104,8 @@ namespace VanirsWatch.reader
             Random rnd = new Random();
 
             int rndNum = rnd.Next(0, 85);
-
-            return currJobEXP += rndNum;
+            int c = currJobEXP;
+            return currJobEXP = c + rndNum;
         }
 
         public int getNextBaseEXP()
@@ -127,10 +123,9 @@ namespace VanirsWatch.reader
             return zeny;
         }
 
-        public String getJob()
+        public static String getJob()
         {
-            JobClasses jobClasses = new JobClasses();
-            return jobClasses.getJobClass(jobID);
+            return JobClasses.getJobClass(jobID);
         }
 
         private int changeNumber(int rndNum)

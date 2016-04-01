@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Timers;
+using VanirsWatch.reader;
 
 namespace VanirsWatch
 {
@@ -8,6 +10,12 @@ namespace VanirsWatch
     {
         const int PROCESS_WM_READ = 0x0010;
         const int INTBUFFER_SIZE = 4;
+        const int HOURMS = 360000;
+        private static ReaderD r = new ReaderD();
+        private static Timer loop = new Timer(1000);
+        private static int prevTime = 0;
+        private static int prevBaseEXP = 0;
+        private static int prevJobEXP = 0;
 
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
@@ -18,6 +26,15 @@ namespace VanirsWatch
 
         static void Main(string[] args)
         {
+            //Timer loop = new Timer(1000);
+            loop.Elapsed += loopTick;
+            loop.Start();
+
+            while(true)
+            {
+                //block the program exit
+            }
+
 
             /** let's make a debug class first!
               * implement that stuff later again ;)
@@ -80,6 +97,73 @@ namespace VanirsWatch
             Console.WriteLine("JobID: " + bufferToInt(buffer));
 
             */
+        }
+
+        private static void loopTick(Object source, ElapsedEventArgs e)
+        {
+            Console.Clear();
+            int baseEXP = r.getBaseEXP();
+            int jobEXP = r.getJobEXP();
+
+            Console.WriteLine( ReaderD.getName() + " @ Map: " + ReaderD.getMap() );
+            Console.WriteLine("Base Lv: " + ReaderD.getBaseLv() + " | Job Lv: " + ReaderD.getJobLv() + " | " + ReaderD.getJob());
+            Console.WriteLine("-----");
+            Console.WriteLine("BaseEXP: " + baseEXP + "/" + r.getNextBaseEXP() + progressBar(baseEXP, r.getNextBaseEXP()));
+            Console.WriteLine(" JobEXP: " + jobEXP + "/" + r.getNextJobEXP() + progressBar(jobEXP, r.getNextJobEXP()));
+            Console.WriteLine("BaseEXP/h: " + (baseEXP - prevBaseEXP) * 360 +  " | JobEXP/h: " + (jobEXP - prevJobEXP) * 360);
+            Console.WriteLine("-----");
+            Console.WriteLine("HP: " + r.getCurrHP() + "/" + r.getMaxHP() + progressBar(r.getCurrHP(), r.getMaxHP()));
+            Console.WriteLine("SP: " + r.getCurrSP() + "/" + r.getMaxSP() + progressBar(r.getCurrSP(), r.getMaxSP()));
+            Console.WriteLine("-----");
+            Console.WriteLine("Weight: " + r.getWeight() + "/" + r.getMaxWeight() + progressBar(r.getWeight(), r.getMaxWeight()));
+            Console.WriteLine("Zeny: " + r.getZeny());
+
+            prevBaseEXP = baseEXP;
+            prevJobEXP = jobEXP;
+            /*
+            name @ map
+            Base Job Class
+            -----
+            BaseEXP: currExp / nextBase
+            JobEXP: currExp / nextJob
+            -----
+            HP: currHP / maxHP
+            SP: currSP / maxSP
+            -----
+            Weight: currWeigt / maxWeight
+            Zeny: zeny
+            */
+
+            /*
+            String bar = "[";
+            for(int i = 0; i < 25; i++)
+            {
+                bar += "█";
+            }
+            for(int i = 0; i < 25; i++)
+            {
+                bar += "_";
+            }
+            Console.WriteLine("Count" + count++);
+            Console.WriteLine("BaseEXP: " + bar + "]");
+            */
+        }
+
+        private static String progressBar(int current, int max)
+        {
+            String bar = " [";
+            float currPercent = ((float)current / max) * 50; //50 because we only have max 50 chars for 100% progress bar
+
+            for (int i = 0; i < (int)currPercent; i++)
+            {
+                bar += "█";
+            }
+            for (int i = 0; i < (50 - (int)currPercent); i++)
+            {
+                bar += "_";
+            }
+
+            return bar + "]";
         }
 
         private static int bufferToInt(byte[] buffer)
