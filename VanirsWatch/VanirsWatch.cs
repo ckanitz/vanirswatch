@@ -8,22 +8,22 @@ namespace VanirsWatch
 {
     class VanirsWatch
     {
-        const int PROCESS_WM_READ = 0x0010;
-        const int INTBUFFER_SIZE = 4;
-        const int HOURMS = 360000;
-        private static ReaderD r = new ReaderD();
+        //const int PROCESS_WM_READ = 0x0010;
+        //const int INTBUFFER_SIZE = 4;
+        //const int HOURMS = 360000;
+        private static Reader r = new Reader();
         private static Timer loop = new Timer(1000);
-        private static int prevTime = 0;
+        //private static int prevTime = 0;
         private static int prevBaseEXP = 0;
         private static int prevJobEXP = 0;
 
-        [DllImport("kernel32.dll")]
+        /*[DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll")]
         public static extern bool ReadProcessMemory(int hProcess,
         int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
-
+        */
         static void Main(string[] args)
         {
             //Timer loop = new Timer(1000);
@@ -47,11 +47,11 @@ namespace VanirsWatch
             int bytesRead = 0;
             byte[] buffer = new byte[24]; //'Hello World!' takes 12*2 bytes because of Unicode 
 
-
+            
             // map          008E8988
             ReadProcessMemory((int)processHandle, 0x008E8988, buffer, buffer.Length, ref bytesRead);
             Console.WriteLine("Map: " + System.Text.Encoding.Default.GetString(buffer));
-
+            
             //weight:       009A51E0
             ReadProcessMemory((int)processHandle, 0x009A51E0, buffer, INTBUFFER_SIZE, ref bytesRead);
             Console.WriteLine("Weight: " + bufferToInt(buffer));
@@ -105,8 +105,8 @@ namespace VanirsWatch
             int baseEXP = r.getBaseEXP();
             int jobEXP = r.getJobEXP();
 
-            Console.WriteLine( ReaderD.getName() + " @ Map: " + ReaderD.getMap() );
-            Console.WriteLine("Base Lv: " + ReaderD.getBaseLv() + " | Job Lv: " + ReaderD.getJobLv() + " | " + ReaderD.getJob());
+            Console.WriteLine( r.getName() + " @ Map: " + r.getMap() );
+            Console.WriteLine("Base Lv: " + r.getBaseLv() + " | Job Lv: " + r.getJobLv() + " | " + r.getJob());
             Console.WriteLine("-----");
             Console.WriteLine("BaseEXP: " + baseEXP + "/" + r.getNextBaseEXP() + progressBar(baseEXP, r.getNextBaseEXP()));
             Console.WriteLine(" JobEXP: " + jobEXP + "/" + r.getNextJobEXP() + progressBar(jobEXP, r.getNextJobEXP()));
@@ -165,7 +165,7 @@ namespace VanirsWatch
 
             return bar + "]";
         }
-
+        /*
         private static int bufferToInt(byte[] buffer)
         {
             int valueClc = 0;
@@ -177,5 +177,6 @@ namespace VanirsWatch
 
             return valueClc;
         }
+        */
     }
 }
