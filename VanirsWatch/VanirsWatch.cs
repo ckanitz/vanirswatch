@@ -44,10 +44,10 @@ namespace VanirsWatch
 
             gainedExpBase += deltaEXPBase;
             gainedExpJob += deltaEXPJob;
-            tickCounter += 1000;
+            tickCounter += 1;
 
-            expPerHourBase = gainedExpBase / tickCounter * 360;
-            expPerHourJob = gainedExpJob / tickCounter * 360;
+            expPerHourBase = (gainedExpBase * 3600) / tickCounter;
+            expPerHourJob = (gainedExpJob * 3600) / tickCounter;
 
             Console.WriteLine( r.getName() + " @ Map: " + r.getMap() );
             Console.WriteLine("Base Lv: " + r.getBaseLv() + " | Job Lv: " + r.getJobLv() + " | " + r.getJob());
