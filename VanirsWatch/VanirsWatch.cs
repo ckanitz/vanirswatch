@@ -22,6 +22,10 @@ namespace VanirsWatch
 
         static void Main(string[] args)
         {
+            //init
+            prevBaseEXP = r.getBaseEXP();
+            prevJobEXP = r.getJobEXP();
+
             //Timer loop = new Timer(1000);
             loop.Elapsed += loopTick;
             loop.Start();
@@ -64,33 +68,6 @@ namespace VanirsWatch
 
             prevBaseEXP = baseEXP;
             prevJobEXP = jobEXP;
-            /*
-            name @ map
-            Base Job Class
-            -----
-            BaseEXP: currExp / nextBase
-            JobEXP: currExp / nextJob
-            -----
-            HP: currHP / maxHP
-            SP: currSP / maxSP
-            -----
-            Weight: currWeigt / maxWeight
-            Zeny: zeny
-            */
-
-            /*
-            String bar = "[";
-            for(int i = 0; i < 25; i++)
-            {
-                bar += "█";
-            }
-            for(int i = 0; i < 25; i++)
-            {
-                bar += "_";
-            }
-            Console.WriteLine("Count" + count++);
-            Console.WriteLine("BaseEXP: " + bar + "]");
-            */
         }
 
         private static String progressBar(int current, int max)
