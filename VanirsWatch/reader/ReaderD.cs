@@ -24,14 +24,14 @@ namespace VanirsWatch.reader
         private int currHP = 1337;
         private int currSP = 666;
 
-        public static String getMap()
+        public String getMap()
         {
             //regex: [^\.]+
-            //return Regex.Replace(map, "[^\\.]+", "");
-            return map;
+            return Regex.Match(map, @"^([^\.]*)").Value;
+            //return map;
         }
 
-        public static String getName()
+        public String getName()
         {
             return name;
         }
@@ -81,12 +81,12 @@ namespace VanirsWatch.reader
             return maxSP;
         }
         
-        public static int getBaseLv()
+        public int getBaseLv()
         {
             return baseLv;
         }
 
-        public static int getJobLv()
+        public int getJobLv()
         {
             return jobLv;
         }
@@ -123,7 +123,7 @@ namespace VanirsWatch.reader
             return zeny;
         }
 
-        public static String getJob()
+        public String getJob()
         {
             return JobClasses.getJobClass(jobID);
         }

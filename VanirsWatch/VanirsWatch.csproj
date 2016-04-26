@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IniReader.cs" />
     <Compile Include="reader\JobClasses.cs" />
     <Compile Include="reader\Reader.cs" />
     <Compile Include="reader\ReaderD.cs" />

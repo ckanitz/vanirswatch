@@ -1,14 +1,21 @@
 # vanirswatch
 
-Vanirs Watch is a Third-Party-Tool for Ragnarok Online that shows current data of your Character and the gained base and job EXP per hour.
-
-### Setup
+Vanirs Watch is a Third-Party-Tool for Ragnarok Online that shows current data of your Character and the gained base and job EXP per hour.  
+  
+If you want me to make an INI file for your server open an issue and provide your server admin approval if needed for third party tools! See "INI request template"-Issue for requests.  
+  
+### Setup  
+Check INI file and put in your memory-addresses.  
 Run Vanirswatch.exe as Administrator.
 
 ### Version
 0.2.0 BETA
 
 ### Changelog  
+**0.2.1 BETA**  
+Settings will be read from INI file now.  
+Edit INI file to make VanirsWatch working on your server!  
+
 **0.2.0 BETA**  
 First fully working version!  
 Console only, run as admin.  

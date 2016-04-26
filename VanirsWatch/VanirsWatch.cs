@@ -26,7 +26,7 @@ namespace VanirsWatch
             prevBaseEXP = r.getBaseEXP();
             prevJobEXP = r.getJobEXP();
 
-            //Timer loop = new Timer(1000);
+            Timer loop = new Timer(1000);
             loop.Elapsed += loopTick;
             loop.Start();
 
@@ -86,18 +86,5 @@ namespace VanirsWatch
 
             return bar + "]";
         }
-        /*
-        private static int bufferToInt(byte[] buffer)
-        {
-            int valueClc = 0;
-            for (int i = INTBUFFER_SIZE - 1; i >= 0; i--)
-            {
-                valueClc *= 256;
-                valueClc += (int)buffer[i];
-            }
-
-            return valueClc;
-        }
-        */
     }
 }

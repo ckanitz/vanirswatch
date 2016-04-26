@@ -1,20 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace VanirsWatch.reader
 {
     class Reader
     {
-        const int PROCESS_WM_READ = 0x0010; //"read"-token
-        const int INTBUFFER_SIZE = 4; //max byte length´, 4 is enough for everything with int as return value
-        const String proccessName = "my";
+        private const int PROCESS_WM_READ = 0x0010; //"read"-token
+        private const int INTBUFFER_SIZE = 4; //max byte length´, 4 is enough for everything with int as return value
+        private String proccessName;
+        private IniReader ini = new IniReader("VanirsWatch.ini");
 
         // addresses
+        private int mapAddr;
+        private int nameAddr;
+        private int hpAddr;
+        private int spAddr;
+        private int maxHPAddr;
+        private int maxSPAddr;
+        private int baseLvAddr;
+        private int jobLvAddr;
+        private int baseExpAddr;
+        private int jobExpAddr;
+        private int nextLvExpBaseAddr;
+        private int nextLvExpJobAddr;
+        private int weightAddr;
+        private int maxWeightAddr;
+        private int zenyAddr;
+        private int jobIDAddr;
+        /*
         private const int mapAddr           = 0x008E8988;
         private const int nameAddr          = 0x009A7DC0;
         private const int hpAddr            = 0x009A75A8;
@@ -31,6 +46,7 @@ namespace VanirsWatch.reader
         private const int maxWeightAddr     = 0x009A51D4;
         private const int zenyAddr          = 0x009A51C8;
         private const int jobIDAddr         = 0x009A511C;
+        */
 
         private Process process;
         private IntPtr processHandle;
@@ -46,6 +62,25 @@ namespace VanirsWatch.reader
 
         //constructor
         public Reader() {
+            proccessName = ini.Read("Ragexe");
+
+            mapAddr = Convert.ToInt32(ini.Read("mapAddr").Substring(2), 16);
+            nameAddr = Convert.ToInt32(ini.Read("nameAddr").Substring(2), 16);
+            hpAddr = Convert.ToInt32(ini.Read("hpAddr").Substring(2), 16);
+            spAddr = Convert.ToInt32(ini.Read("spAddr").Substring(2), 16);
+            maxHPAddr = Convert.ToInt32(ini.Read("maxHPAddr").Substring(2), 16);
+            maxSPAddr = Convert.ToInt32(ini.Read("maxSPAddr").Substring(2), 16);
+            baseLvAddr = Convert.ToInt32(ini.Read("baseLvAddr").Substring(2), 16);
+            jobLvAddr = Convert.ToInt32(ini.Read("jobLvAddr").Substring(2), 16);
+            baseExpAddr = Convert.ToInt32(ini.Read("baseExpAddr").Substring(2), 16);
+            jobExpAddr = Convert.ToInt32(ini.Read("jobExpAddr").Substring(2), 16);
+            nextLvExpBaseAddr = Convert.ToInt32(ini.Read("nextLvExpBaseAddr").Substring(2), 16);
+            nextLvExpJobAddr = Convert.ToInt32(ini.Read("nextLvExpJobAddr").Substring(2), 16);
+            weightAddr = Convert.ToInt32(ini.Read("weightAddr").Substring(2), 16);
+            maxWeightAddr = Convert.ToInt32(ini.Read("maxWeightAddr").Substring(2), 16);
+            zenyAddr = Convert.ToInt32(ini.Read("zenyAddr").Substring(2), 16);
+            jobIDAddr = Convert.ToInt32(ini.Read("jobIDAddr").Substring(2), 16);
+
             process = Process.GetProcessesByName(proccessName)[0];
             processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
 
@@ -57,10 +92,8 @@ namespace VanirsWatch.reader
         {
             ReadProcessMemory((int)processHandle, mapAddr, buffer, buffer.Length, ref bytesRead);
             
-            return System.Text.Encoding.Default.GetString(buffer);
-
-            //regex: [^\.]+
-            //return Regex.Replace(map, "[^\\.]+", "");
+            //return System.Text.Encoding.Default.GetString(buffer); <-- old stuff, may delete later after testing :)
+            return Regex.Match(System.Text.Encoding.Default.GetString(buffer), @"^([^\.]*)").Value;
         }
 
         public String getName()
