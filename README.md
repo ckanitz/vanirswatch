@@ -11,9 +11,15 @@ Check INI file and put in your memory-addresses.
 Run Vanirswatch.exe as Administrator.  
   
 ### Current Version  
-1.0.1 BETA  
+1.0.2 BETA  
   
 ### Changelog  
+**1.0.2 BETA**  
+Restructured code for more readability  
+Base Level is now shown next to "Base Lv" left of the bar  
+...same goes with Job Level  
+Fixed the timer interval (was accidently 500 instead of 1000 which caused in calculating false exp/h)  
+  
 **1.0.1 BETA**  
 Made new resolution for GUI  
 Moved old code to _legacy  

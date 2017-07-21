@@ -14,7 +14,7 @@ namespace Vanirs_Watch
 	/// <summary>
 	/// Class with program entry point.
 	/// </summary>
-	internal sealed class Program
+	internal sealed class VanirsWatch
 	{
 		/// <summary>
 		/// Program entry point.

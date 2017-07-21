@@ -18,7 +18,7 @@ namespace Vanirs_Watch
 		private System.Windows.Forms.Button btn_minimize;
 		private System.Windows.Forms.Label programName;
 		private System.Windows.Forms.Label lbl_charname;
-		private System.Windows.Forms.Label lbl_class_level;
+		private System.Windows.Forms.Label lbl_class;
 		private System.Windows.Forms.Label static_hp;
 		private System.Windows.Forms.Label static_sp;
 		private System.Windows.Forms.Label static_baselv;
@@ -39,6 +39,8 @@ namespace Vanirs_Watch
 		private System.Windows.Forms.Panel sp_bar;
 		private System.Windows.Forms.Panel base_bar;
 		private System.Windows.Forms.Panel job_bar;
+		private System.Windows.Forms.Label lbl_blvl;
+		private System.Windows.Forms.Label lbl_jlvl;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -65,7 +67,7 @@ namespace Vanirs_Watch
 			this.btn_minimize = new System.Windows.Forms.Button();
 			this.programName = new System.Windows.Forms.Label();
 			this.lbl_charname = new System.Windows.Forms.Label();
-			this.lbl_class_level = new System.Windows.Forms.Label();
+			this.lbl_class = new System.Windows.Forms.Label();
 			this.static_hp = new System.Windows.Forms.Label();
 			this.static_sp = new System.Windows.Forms.Label();
 			this.static_baselv = new System.Windows.Forms.Label();
@@ -86,6 +88,8 @@ namespace Vanirs_Watch
 			this.sp_bar = new System.Windows.Forms.Panel();
 			this.base_bar = new System.Windows.Forms.Panel();
 			this.job_bar = new System.Windows.Forms.Panel();
+			this.lbl_blvl = new System.Windows.Forms.Label();
+			this.lbl_jlvl = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// btn_close
@@ -133,9 +137,9 @@ namespace Vanirs_Watch
 			this.programName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.programName.Location = new System.Drawing.Point(7, 1);
 			this.programName.Name = "programName";
-			this.programName.Size = new System.Drawing.Size(114, 14);
+			this.programName.Size = new System.Drawing.Size(198, 12);
 			this.programName.TabIndex = 9999;
-			this.programName.Text = "Vanirs Watch v1.0";
+			this.programName.Text = "Vanirs Watch v1.0.2 BETA";
 			// 
 			// lbl_charname
 			// 
@@ -148,16 +152,16 @@ namespace Vanirs_Watch
 			this.lbl_charname.TabIndex = 10000;
 			this.lbl_charname.Text = "Character";
 			// 
-			// lbl_class_level
+			// lbl_class
 			// 
-			this.lbl_class_level.BackColor = System.Drawing.Color.Transparent;
-			this.lbl_class_level.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-			this.lbl_class_level.ForeColor = System.Drawing.Color.Black;
-			this.lbl_class_level.Location = new System.Drawing.Point(10, 42);
-			this.lbl_class_level.Name = "lbl_class_level";
-			this.lbl_class_level.Size = new System.Drawing.Size(264, 18);
-			this.lbl_class_level.TabIndex = 10001;
-			this.lbl_class_level.Text = "ClassName // Base Lv. 00 • Job Lv. 00";
+			this.lbl_class.BackColor = System.Drawing.Color.Transparent;
+			this.lbl_class.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.lbl_class.ForeColor = System.Drawing.Color.Black;
+			this.lbl_class.Location = new System.Drawing.Point(10, 42);
+			this.lbl_class.Name = "lbl_class";
+			this.lbl_class.Size = new System.Drawing.Size(264, 18);
+			this.lbl_class.TabIndex = 10001;
+			this.lbl_class.Text = "ClassName";
 			// 
 			// static_hp
 			// 
@@ -395,12 +399,36 @@ namespace Vanirs_Watch
 			this.job_bar.Size = new System.Drawing.Size(100, 5);
 			this.job_bar.TabIndex = 10022;
 			// 
+			// lbl_blvl
+			// 
+			this.lbl_blvl.BackColor = System.Drawing.Color.Transparent;
+			this.lbl_blvl.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.lbl_blvl.ForeColor = System.Drawing.Color.Black;
+			this.lbl_blvl.Location = new System.Drawing.Point(69, 102);
+			this.lbl_blvl.Name = "lbl_blvl";
+			this.lbl_blvl.Size = new System.Drawing.Size(24, 18);
+			this.lbl_blvl.TabIndex = 10023;
+			this.lbl_blvl.Text = "00";
+			// 
+			// lbl_jlvl
+			// 
+			this.lbl_jlvl.BackColor = System.Drawing.Color.Transparent;
+			this.lbl_jlvl.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+			this.lbl_jlvl.ForeColor = System.Drawing.Color.Black;
+			this.lbl_jlvl.Location = new System.Drawing.Point(69, 131);
+			this.lbl_jlvl.Name = "lbl_jlvl";
+			this.lbl_jlvl.Size = new System.Drawing.Size(24, 18);
+			this.lbl_jlvl.TabIndex = 10024;
+			this.lbl_jlvl.Text = "00";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackgroundImage = global::Vanirs_Watch.assets.images.window;
 			this.ClientSize = new System.Drawing.Size(280, 203);
 			this.ControlBox = false;
+			this.Controls.Add(this.lbl_jlvl);
+			this.Controls.Add(this.lbl_blvl);
 			this.Controls.Add(this.job_bar);
 			this.Controls.Add(this.base_bar);
 			this.Controls.Add(this.sp_bar);
@@ -421,7 +449,7 @@ namespace Vanirs_Watch
 			this.Controls.Add(this.static_baselv);
 			this.Controls.Add(this.static_sp);
 			this.Controls.Add(this.static_hp);
-			this.Controls.Add(this.lbl_class_level);
+			this.Controls.Add(this.lbl_class);
 			this.Controls.Add(this.lbl_charname);
 			this.Controls.Add(this.programName);
 			this.Controls.Add(this.btn_minimize);
