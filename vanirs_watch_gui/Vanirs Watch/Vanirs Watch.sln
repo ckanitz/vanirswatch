@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vanirs Watch", "Vanirs Watch\Vanirs Watch.csproj", "{3D528C31-8AD8-41BA-B569-C808A94DA2F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D528C31-8AD8-41BA-B569-C808A94DA2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D528C31-8AD8-41BA-B569-C808A94DA2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D528C31-8AD8-41BA-B569-C808A94DA2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D528C31-8AD8-41BA-B569-C808A94DA2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
