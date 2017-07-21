@@ -1,6 +1,6 @@
 # VanirsWatch  
   
-![alt text](https://github.com/ckanitz/vanirswatch/blob/master/vanriswatch_assets/vanirswatch_layout.png)  
+![alt text](https://github.com/ckanitz/vanirswatch/blob/master/vanirs_watch_assets/vanirswatch_layout.png)  
   
 Vanirs Watch is a Third-Party-Tool for Ragnarok Online that shows current data of your Character and the gained base and job EXP per hour.  
   
