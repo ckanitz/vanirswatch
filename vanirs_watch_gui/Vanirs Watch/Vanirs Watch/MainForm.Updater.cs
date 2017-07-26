@@ -26,8 +26,6 @@ namespace Vanirs_Watch
         private static int jobEXP;
 		private static int prevBaseEXP;
         private static int prevJobEXP;
-        private static int baseLevel;
-        private static int jobLevel;
 
         // needed for exp/h buffer
         private static int gainedExpBase;
@@ -45,8 +43,6 @@ namespace Vanirs_Watch
 	        gainedExpJob = 0;
 	        expPerHourBase = 0;
 	        expPerHourJob = 0;
-	        baseLevel = 0;
-	        jobLevel = 0;
 	        
 	        // init reader
 			try {
@@ -89,23 +85,13 @@ namespace Vanirs_Watch
         	this.lbl_charname.Text = r.getName();
         	this.lbl_class.Text = r.getJob();
         	
-        	baseLevel = r.getBaseLv();
-        	jobLevel = r.getJobLv();
-        	
         	this.UpdateForm();
         }
         
 		public void UpdateForm()
 		{
-			// just experimental if this reduces forms flickering... maybe remove it later
-			if ( baseLevel == 0 && baseLevel != r.getBaseLv() ) {
-				baseLevel = r.getBaseLv();
-				this.lbl_blvl.Text = baseLevel.ToString();
-			}
-			if ( jobLevel == 0 && jobLevel != r.getJobLv() ) {
-				jobLevel = r.getJobLv();
-				this.lbl_jlvl.Text = jobLevel.ToString();
-			}
+			this.lbl_blvl.Text = r.getBaseLv().ToString();
+			this.lbl_jlvl.Text = r.getJobLv().ToString();
         	        
 			// HP Stuff			
 			int hpCur = r.getCurrHP();

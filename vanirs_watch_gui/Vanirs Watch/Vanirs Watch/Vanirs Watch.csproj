@@ -10,7 +10,7 @@
     <AssemblyName>Vanirs Watch</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ApplicationIcon>..\..\..\vanriswatch_assets\prod\icon.ico</ApplicationIcon>
+    <ApplicationIcon>..\..\..\vanirs_watch_assets\prod\icon.ico</ApplicationIcon>
     <NoWin32Manifest>False</NoWin32Manifest>
     <SignAssembly>False</SignAssembly>
     <DelaySign>False</DelaySign>
